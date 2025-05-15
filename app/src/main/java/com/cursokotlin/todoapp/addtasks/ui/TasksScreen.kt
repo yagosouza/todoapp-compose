@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -93,7 +94,7 @@ fun AddTasksDialog(show: Boolean, onDismiss: () -> Unit, onTaskAdded: (String) -
                     .padding(16.dp)
             ) {
                 Text(
-                    text = "Añade tu tarea",
+                    text = "Escreva sua tarefa",
                     fontSize = 18.sp,
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     fontWeight = FontWeight.Bold
@@ -103,14 +104,15 @@ fun AddTasksDialog(show: Boolean, onDismiss: () -> Unit, onTaskAdded: (String) -
                     value = myTask,
                     onValueChange = { myTask = it },
                     singleLine = true,
-                    maxLines = 1
+                    maxLines = 1,
+                    textStyle = TextStyle(fontWeight = FontWeight.Bold, color = Color.Blue)
                 )
                 Spacer(modifier = Modifier.size(16.dp))
                 Button(onClick = {
                     onTaskAdded(myTask)
                     myTask = ""
-                }, modifier = Modifier.fillMaxWidth()) {
-                    Text(text = "Añadir tarea")
+                }, enabled = myTask.isNotEmpty(), modifier = Modifier.fillMaxWidth()) {
+                    Text(text = "Incluir tarefa")
                 }
             }
         }
